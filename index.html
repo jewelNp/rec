@@ -1,0 +1,306 @@
+l<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Game Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Impact&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+      <style>
+         /* ===== Base Styles ===== */
+.button-section {
+    position: relative;
+    padding: 4rem 2rem;
+    margin: 4rem auto;
+    max-width: 1200px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(143,143,143,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    overflow: hidden;
+}
+
+/* ===== Raining Effect ===== */
+.rain {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.drop {
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(173, 216, 230, 0.6), rgba(173, 216, 230, 0.3));
+    animation: fall linear infinite;
+    border-radius: 2px;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100%) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh) translateX(30px); opacity: 0; }
+}
+
+/* ===== Button Container ===== */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== Main Button Styles ===== */
+.nav-button {
+    position: relative;
+    padding: 1.2rem 2.8rem;
+    background: linear-gradient(135deg, #ff7b7b 0%, #ff5252 100%);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(255,123,123,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+}
+
+.nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255,123,123,0.25);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4040 100%);
+}
+
+.nav-button:hover::before {
+    left: 100%;
+}
+
+.nav-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(255,123,123,0.2);
+}
+
+/* ===== Color Variations ===== */
+.nav-button:nth-child(2) { background: linear-gradient(135deg, #6c5ce7 0%, #4b37d6 100%); box-shadow: 0 4px 6px rgba(108,92,231,0.15); }
+.nav-button:nth-child(2):hover { background: linear-gradient(135deg, #5b4ad6 0%, #3a26c5 100%); }
+
+.nav-button:nth-child(3) { background: linear-gradient(135deg, #00b894 0%, #009d7a 100%); box-shadow: 0 4px 6px rgba(0,184,148,0.15); }
+.nav-button:nth-child(3):hover { background: linear-gradient(135deg, #00a783 0%, #008b69 100%); }
+
+.nav-button:nth-child(4) { background: linear-gradient(135deg, #fdcb6e 0%, #f9a825 100%); box-shadow: 0 4px 6px rgba(253,203,110,0.15); }
+.nav-button:nth-child(4):hover { background: linear-gradient(135deg, #f5b747 0%, #e69500 100%); }
+
+.nav-button:nth-child(5) { background: linear-gradient(135deg, #e84393 0%, #c23678 100%); box-shadow: 0 4px 6px rgba(232,67,147,0.15); }
+.nav-button:nth-child(5):hover { background: linear-gradient(135deg, #d73282 0%, #b12567 100%); }
+
+.nav-button:nth-child(6) { background: linear-gradient(135deg, #00cec9 0%, #00a8a3 100%); box-shadow: 0 4px 6px rgba(0,206,201,0.15); }
+.nav-button:nth-child(6):hover { background: linear-gradient(135deg, #00b5b0 0%, #00918d 100%); }
+
+/* ===== Learn More Button ===== */
+.learn-more {
+    display: inline-block;
+    margin: 2.5rem auto 0;
+    padding: 0.8rem 2.2rem;
+    color: #6c5ce7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid rgba(108,92,231,0.15);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(108,92,231,0.08);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+}
+
+.learn-more:hover {
+    background: rgba(108,92,231,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108,92,231,0.12);
+    color: #4b37d6;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .nav-button { width: 100%; max-width: 300px; }
+    .button-section { padding: 2rem 1rem; margin: 2rem auto; }
+    .drop { height: 40px; width: 1.5px; animation-duration: 1.2s !important; }
+}
+
+@media (max-width: 480px) {
+    .drop { height: 30px; width: 1px; animation-duration: 1s !important; }
+}
+      </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        
+        <div class="form-container" id="form-container">
+            <h1> Sales Report</h1>
+            <form action="https://script.google.com/macros/s/AKfycbz726DyNLh9hHlghr23YJhCRQYgNa3e4rkPigVYQ83grjxYelZJZfu43WFPPp74KTxH/exec" method="POST">
+                <label for="customer_name">customer's Name:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+
+                <label for="Phone number">Phone Number:</label>
+                <input type="text" id="phone_num" name="phone_num" required>
+
+                <label for="item">Item:</label>
+                <select id="item" name="item" required>
+                    <option value="ring">ring</option>
+                    <option value="braclet">braclet</option>
+                    <option value="combo">combo</option>
+                </select>
+
+                <label for="sku">SKU:</label>
+                <input type="text" id="sku" name="sku" required>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+
+                <label for="payment_method">Payment Method:</label>
+                <select id="payment_method" name="payment_method" required>
+                    <option value="Cash">Cash</option>
+                    <option value="Online">Online</option>
+   
+                </select>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" name="remarks" class="remarks-field"></textarea>
+
+                <label for="employee">Employee:</label>
+                <select id="employee" name="employee" required>
+                    <option value="MrEthicaal">MrEthicaal</option>
+                    <option value="RedDevil">RedDevil</option>
+                   
+                </select>
+
+
+                <label for="status">status:</label>
+                <select id="status" name="status" required>
+                    <option value="delivered">Delivered</option>
+                    <option value="shipping">Shipping</option>
+                    <option value="order_received">Order Received</option>
+                   
+                </select>
+                <label for="jpt">JPT:</label>
+                <textarea id="jpt" name="jpt" class="jpt"></textarea>
+
+                <input type="submit" value="Submit">
+         
+
+
+
+
+  </form>
+
+        </div>
+    </div>
+    
+             
+
+    <script>
+        window.onload = function () {
+            document.getElementById("form-container").classList.add("show");
+        };
+
+        function showPopup() {
+            alert("Hello, I am Mr. Beluga. This backend is designed and distributed by me. If you need a similar backend, you can contact me. It costs only $5 per month. This module includes everything you need to run your casino, such as generating web receipts, storing records in a spreadsheet, and full automation. I can also design a website for your gaming platform and perform SEO to boost your pages.");
+        }
+        window.onload = function () {
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById("date").value = formattedDate;
+            const hours = String(today.getHours()).padStart(2, '0');
+            const minutes = String(today.getMinutes()).padStart(2, '0');
+            document.getElementById("time").value = `${hours}:${minutes}`;
+            document.getElementById("form-container").classList.add("show");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const submitButton = form.querySelector('input[type="submit"]');
+            let isFormSubmitted = false;
+
+            form.addEventListener("submit", function (event) {
+                if (isFormSubmitted) {
+                    event.preventDefault();
+                    return;
+                }
+                isFormSubmitted = true;
+                submitButton.disabled = true;
+                submitButton.value = "Submitting...";
+            });
+
+            submitButton.addEventListener("touchstart", function (event) {
+                if (isFormSubmitted) {
+                    event.preventDefault();
+                }
+            });
+
+            submitButton.addEventListener("click", function (event) {
+                if (isFormSubmitted) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        function createRain() {
+    const rainContainer = document.getElementById('rain');
+    const dropsCount = window.innerWidth > 768 ? 50 : window.innerWidth > 480 ? 30 : 20;
+    
+    // Clear existing drops
+    rainContainer.innerHTML = '';
+    
+    // Create new drops
+    for(let i = 0; i < dropsCount; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        drop.style.animationDuration = (Math.random() * 0.5 + 1) + 's';
+        rainContainer.appendChild(drop);
+    }
+}
+
+// Initial creation
+createRain();
+
+// Update on resize
+window.addEventListener('resize', createRain);
+    </script>
+</body>
+</html>
