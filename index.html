@@ -211,13 +211,13 @@ l<!DOCTYPE html>
 
                 <label for="status">status:</label>
                 <select id="status" name="status" required>
-                    <option value="delivered">Delivered</option>
+                 <option value="order_received">Order Received</option>
                     <option value="shipping">Shipping</option>
-                    <option value="order_received">Order Received</option>
+                    <option value="delivered">Delivered</option>
                    
                 </select>
-                <label for="jpt">JPT:</label>
-                <textarea id="jpt" name="jpt" class="jpt"></textarea>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" class="address"></textarea>
 
                 <input type="submit" value="Submit">
          
@@ -303,4 +303,5 @@ createRain();
 window.addEventListener('resize', createRain);
     </script>
 </body>
+
 </html>
